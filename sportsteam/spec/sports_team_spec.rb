@@ -41,4 +41,21 @@ class TestSportsTeam < MiniTest::Test
     assert_equal(true, team.has_player_called("Cat"))
   end
 
+  def test_start_at_zero_points
+    team = SportsTeam.new("Team 1", ["Steven","Cat"], "Megabus")
+    assert_equal(0, team.points)
+  end
+
+  def test_win_increments_score
+    team = SportsTeam.new("Team 1", ["Steven","Cat"], "Megabus")
+    team.update_points("win")
+    assert_equal(1, team.points)
+  end
+
+  def test_lose_score_is_unchanged
+    team = SportsTeam.new("Team 1", ["Steven","Cat"], "Megabus")
+    team.update_points("lose")
+    assert_equal(0, team.points)
+  end
+
 end
