@@ -12,13 +12,26 @@ class Library
 
   def get_book_details(book_title)
     for book in @books
-      p book
       if book[:title] == book_title
         return book
       end
     end
-    p "Not found"
     return nil # not found that book
+  end
+
+  def get_rental_details(book_title)
+    get_book_details(book_title)[:rental_details]
+  end
+
+  def add_new_book(book_title)
+    new_book_hash = {
+      title: book_title,
+      rental_details: {
+        student_name: '',
+        date: ''
+      }
+    }
+    add_book(new_book_hash)
   end
 
 end

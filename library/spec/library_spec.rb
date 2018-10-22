@@ -40,4 +40,17 @@ class TestLibrary < MiniTest::Test
     assert_equal("lord_of_the_rings", book_details[:title])
   end
 
+  def test_get_rental_details_for_book
+    rental_details = @library.get_rental_details("lord_of_the_rings")
+    assert_equal("Jeff", rental_details[:student_name])
+    assert_equal("01/12/16", rental_details[:date])
+  end
+
+  def test_add_book_to_library
+    @library.add_new_book("lord_of_the_flies")
+    assert_equal(2,@library.books.length)
+    book_details = @library.get_book_details("lord_of_the_flies")
+    assert_equal("lord_of_the_flies", book_details[:title])
+  end
+
 end
