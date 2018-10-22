@@ -31,7 +31,6 @@ class TestLibrary < MiniTest::Test
   end
 
   def test_make_library
-
     assert @library.books[0][:title]=="lord_of_the_rings"
   end
 
@@ -51,6 +50,13 @@ class TestLibrary < MiniTest::Test
     assert_equal(2,@library.books.length)
     book_details = @library.get_book_details("lord_of_the_flies")
     assert_equal("lord_of_the_flies", book_details[:title])
+  end
+
+  def test_edit_rental_details_for_book
+    @library.edit_rental_details("lord_of_the_rings", "Alf", "25/12/2017")
+    rental = @library.get_rental_details("lord_of_the_rings")
+    assert_equal("Alf", rental[:student])
+    assert_equal("25/12/2017", rental[:date])
   end
 
 end

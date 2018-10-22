@@ -34,4 +34,10 @@ class Library
     add_book(new_book_hash)
   end
 
+  def edit_rental_details(book_title, student, date)
+    book = get_book_details(book_title)
+    book[:rental_details][:student] = student
+    book[:rental_details][:date] = date    
+  end
+
 end
